@@ -1,7 +1,7 @@
 {
   "name": "slack-vscode",
   "version": "0.0.1",
-  "description": "Slack extension for VS Code : Send your messages and files to Slack without leaving the editor.",
+  "description": "Slack extension for VS Code: Send your messages and files to Slack without leaving the editor.",
   "main": "./src/extension.js",
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install"
