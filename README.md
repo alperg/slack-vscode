@@ -1,2 +1,2 @@
-# slack-vscode
-Slack extension for Visual Studio Code
+# VS Code Slack extension
+Send your messages and files to Slack without leaving VS Code.
