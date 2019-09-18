@@ -1,0 +1,20 @@
+{
+  "name": "slack-vscode",
+  "version": "1.0.0",
+  "description": "Slack extension for Visual Studio Code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alperg/slack-vscode.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alperg/slack-vscode/issues"
+  },
+  "homepage": "https://github.com/alperg/slack-vscode#readme"
+}
