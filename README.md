@@ -2,8 +2,6 @@
 Send your messages and files to Slack without leaving VS Code.
 https://marketplace.visualstudio.com/items/alperg
 
-![Screenshot](icon.png)
-
 #### How it works?
 * Upload file to Slack
 
