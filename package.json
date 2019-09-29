@@ -1,8 +1,9 @@
 {
   "name": "slack-vscode",
   "displayName": "Slack-VSCode",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Slack extension for VS Code: Send your messages and files to Slack without leaving the editor.",
+  "icon": "icon.png",
   "main": "./out/extension.js",
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -102,7 +103,7 @@
         },
         "slackVSCode.iconUrl": {
           "type": "string",
-          "default": "http://i.imgur.com/O8dDZpb.png",
+          "default": "https://im.ezgif.com/tmp/ezgif-1-0f817186d321.png",
           "description": "Slack icon url"
         },
         "slackVSCode.listChannels": {
@@ -119,6 +120,21 @@
           "type": "boolean",
           "default": true,
           "description": "True if you want to list the members"
+        },
+        "slackVSCode.fileWithFullPath": {
+          "type": "boolean",
+          "default": false,
+          "description": "True if you want to send files with full path"
+        },
+        "slackVSCode.excludeFromFullPath": {
+          "type": "string",
+          "default": "",
+          "description": "String to exclude from the file full path i.e. '/Users/alper/dev'"
+        },
+        "slackVSCode.defaultRecipient": {
+          "type": "string",
+          "default": "",
+          "description": "The default recipient, to send the message directly without choosing from the drop down. i.e. '#general', '@user'"
         }
       }
     }

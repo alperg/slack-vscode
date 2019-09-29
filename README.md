@@ -38,7 +38,7 @@ Go to User Settings (File > Preferences > User Settings) and add the following
     * Specified username will be attributed to each message
 
 * ##### `"iconUrl"` (optional)
-    * Image for the avatar
+    * Image for the avatar, defult 'https://im.ezgif.com/tmp/ezgif-1-0f817186d321.png'
 
 * ##### `"listChannels"` (optional)
     * <`true` for listing the slack channels>
@@ -50,13 +50,13 @@ Go to User Settings (File > Preferences > User Settings) and add the following
     * <`true` for listing the slack members>
 
 * ##### `"fileWithFullPath"` (optional)
-    * `true` if you want to send file with the full path
+    * `true` if you want to send files with full path
 
 * ##### `"excludeFromFullPath"` (optional)
     * String to exclude from the file full path i.e. `/Users/alper/dev`
 
 * ##### `"defaultRecipient"` (optional)
-    * The default recipient. This will send the message directly. i.e. #general, @user
+    * The default recipient, to send the message directly without choosing from the drop down. i.e. `#general`, `@user`
 
 ### Features
 * Send messages to
