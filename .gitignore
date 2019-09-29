@@ -62,3 +62,4 @@ typings/
 
 out
 .vscode-test
+*.vsix
