@@ -1,10 +1,16 @@
 {
   "name": "slack-vscode",
+  "displayName": "Slack-VSCode",
   "version": "0.0.1",
   "description": "Slack extension for VS Code: Send your messages and files to Slack without leaving the editor.",
-  "main": "./src/extension.js",
+  "main": "./out/extension.js",
   "scripts": {
-    "postinstall": "node ./node_modules/vscode/bin/install"
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test",
+    "install-local": "vsce package && code --install-extension lonsole-cog-0.0.1.vsix"
   },
   "repository": {
     "type": "git",
@@ -23,6 +29,100 @@
     "url": "https://github.com/alperg/"
   },
   "license": "MIT",
+  "activationEvents": [
+    "onCommand:slackVSCode.sendMsg",
+    "onCommand:slackVSCode.sendSelection",
+    "onCommand:slackVSCode.uploadFilePath",
+    "onCommand:slackVSCode.uploadCurrentFile",
+    "onCommand:slackVSCode.uploadFileSelection"
+  ],
+  "contributes": {
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorHasSelection",
+          "command": "slackVSCode.uploadFileSelection",
+          "group": "navigation"
+        },
+        {
+          "command": "slackVSCode.uploadCurrentFile",
+          "group": "navigation"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "slackVSCode.sendMsg",
+        "title": "Slack-VSCode: Send Message"
+      },
+      {
+        "command": "slackVSCode.sendSelection",
+        "title": "Slack-VSCode: Send Selection"
+      },
+      {
+        "command": "slackVSCode.uploadFilePath",
+        "title": "Slack-VSCode: Upload File From Path"
+      },
+      {
+        "command": "slackVSCode.uploadCurrentFile",
+        "title": "Slack-VSCode: Upload Current File"
+      },
+      {
+        "command": "slackVSCode.uploadFileSelection",
+        "title": "Slack-VSCode: Upload Selection as File"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "slackVSCode.sendSelection",
+        "key": "ctrl+shift+alt+s"
+      },
+      {
+        "command": "slackVSCode.sendMsg",
+        "key": "ctrl+shift+alt+m"
+      },
+      {
+        "command": "slackVSCode.uploadCurrentFile",
+        "key": "ctrl+shift+alt+u"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Visual Studio Code Slack configuration",
+      "properties": {
+        "slackVSCode.token": {
+          "type": "string",
+          "default": "",
+          "description": "Slack token"
+        },
+        "slackVSCode.user": {
+          "type": "string",
+          "default": "Code",
+          "description": "Slack username"
+        },
+        "slackVSCode.iconUrl": {
+          "type": "string",
+          "default": "http://i.imgur.com/O8dDZpb.png",
+          "description": "Slack icon url"
+        },
+        "slackVSCode.listChannels": {
+          "type": "boolean",
+          "default": true,
+          "description": "True if you want to list the channels"
+        },
+        "slackVSCode.listGroups": {
+          "type": "boolean",
+          "default": true,
+          "description": "True if you want to list the groups"
+        },
+        "slackVSCode.listMembers": {
+          "type": "boolean",
+          "default": true,
+          "description": "True if you want to list the members"
+        }
+      }
+    }
+  },
   "galleryBanner": {
     "color": "#FFFFFF",
     "theme": "light"
@@ -38,6 +138,11 @@
   },
   "homepage": "https://github.com/alperg/slack-vscode#readme",
   "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.7.8",
+    "@types/request": "^2.48.3",
+    "mocha": "^6.2.1",
+    "typescript": "^3.6.3",
     "vscode": "^1.1.36"
   },
   "dependencies": {
