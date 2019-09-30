@@ -58,7 +58,6 @@ class SlackVSCode {
     ];
 
     wrapRequest(urls, function (responses) {
-
       let response;
 
       for (let url in responses) {
@@ -67,7 +66,7 @@ class SlackVSCode {
 
         // find errors
         if (response.error) {
-          console.log("Error", url, response.error);
+          vscode.window.showErrorMessage(`Error in Slack communication: ${url}:${response.error}`);
           return;
         }
 
@@ -78,7 +77,7 @@ class SlackVSCode {
           if (r.channels && listChannels) {
             for (let i = 0; i < r.channels.length; i++) {
               let c = r.channels[i];
-              channelList.push({ id: c.id, label: '#' + c.name });
+              channelList.push({ id: c.id, label: `#${c.name}` });
             }
           }
 
@@ -86,7 +85,7 @@ class SlackVSCode {
             for (let i = 0; i < r.groups.length; i++) {
               let c = r.groups[i];
               if (listGroups && !c.name.startsWith('mpdm')) {
-                channelList.push({ id: c.id, label: '#' + c.name, description: c.topic.value });
+                channelList.push({ id: c.id, label: `#${c.name}`, description: c.topic.value });
               }
             }
           }
@@ -94,7 +93,7 @@ class SlackVSCode {
           if (r.members && listMembers) {
             for (let i = 0; i < r.members.length; i++) {
               let c = r.members[i];
-              channelList.push({ id: c.id, label: '@' + c.name, description: c.profile.real_name });
+              channelList.push({ id: c.id, label: `@${c.name}`, description: c.profile.real_name });
             }
           }
         }
@@ -112,16 +111,16 @@ class SlackVSCode {
     }
 
     request.post({
-      url: SLACK_BASE_API_URL + apiType,
+      url: `${SLACK_BASE_API_URL}${apiType}`,
       formData: data
     }, function (error, response, body) {
       if (!error && response.statusCode == 200) {
         switch (apiType) {
           case ENDPOINT_FILES_UPLOAD:
-            that._statusBarItem.text = "$(file-text) File sent successfully!";
+            that._statusBarItem.text = '$(file-text) File sent successfully!';
             break;
           default:
-            that._statusBarItem.text = "$(comment) Message sent successfully!";
+            that._statusBarItem.text = '$(comment) Message sent successfully!';
             break;
         }
         that._statusBarItem.show();
@@ -145,8 +144,6 @@ class SlackVSCode {
         s.ApiCall(type, data);
       }
     }
-
-    console.log(channelList);
 
     if (defaultRecipient && defaultRecipient !== '') {
       const recipient = channelList.filter(c => c.label === defaultRecipient)[0];
@@ -177,7 +174,7 @@ class SlackVSCode {
   // Upload file from path
   public UploadFilePath() {
     const options = {
-      prompt: "Please enter a path"
+      prompt: 'Please enter a path'
     };
 
     vscode.window.showInputBox(options).then(path => {
@@ -213,7 +210,7 @@ class SlackVSCode {
     };
 
     if (vscode.window.activeTextEditor.document.isUntitled) {
-      const options = { prompt: "Please enter a file extension" };
+      const options = { prompt: 'Please enter a file extension' };
 
       vscode.window.showInputBox(options).then(type => {
         data.filetype = type;
@@ -224,13 +221,13 @@ class SlackVSCode {
       let filename;
 
       if (fileWithFullPath) {
-        filename = filename_with_path.substring(filename_with_path.lastIndexOf("\\") + 1);
-        if (excludeFromFullPath && excludeFromFullPath !== "") {
+        filename = filename_with_path.substring(filename_with_path.lastIndexOf('\\') + 1);
+        if (excludeFromFullPath && excludeFromFullPath !== '') {
           filename = filename.split(excludeFromFullPath).pop();
         }
         data.title = filename;
       } else {
-        filename = filename_with_path.substring(filename_with_path.lastIndexOf("/") + 1);
+        filename = filename_with_path.substring(filename_with_path.lastIndexOf('/') + 1);
       }
 
       data.filename = filename;
@@ -241,7 +238,7 @@ class SlackVSCode {
 
   public SendMessage() {
     const options = {
-      prompt: "Please enter a message",
+      prompt: 'Please enter a message',
       value: this.savedChannel
     };
 
@@ -256,13 +253,13 @@ class SlackVSCode {
           as_user: 'true'
         };
 
-        if (text.startsWith("@") || text.startsWith("#")) {
+        if (text.startsWith('@') || text.startsWith('#')) {
           data.channel = text.substr(0, text.indexOf(' '));
-          this.savedChannel = data.channel + " ";  // remember last used channel
+          this.savedChannel = `${data.channel} `;  // remember last used channel
           data.text = text.substr(text.indexOf(' ') + 1);
         }
         else {
-          this.savedChannel = ""; // clear saved channel
+          this.savedChannel = ''; // clear saved channel
         }
 
         this.GetChannelList(this.Send, ENDPOINT_POST_MESSAGE, data);
@@ -335,13 +332,11 @@ function reloadConfiguration() {
 }
 
 // This function is called when the extension is activated
-export function activate(context) {
-  extension = context;
-
+export function activate(context: vscode.ExtensionContext) {
   // Commands
   context.subscriptions.push(
     // Send typed message
-    vscode.commands.registerCommand('slackVSCode.sendMsg', () => slack.SendMessage()),
+    vscode.commands.registerCommand('slackVSCode.sendMessage', () => slack.SendMessage()),
     // Send selected text as a message
     vscode.commands.registerCommand('slackVSCode.sendSelection', () => slack.SendSelection()),
     // Upload current file

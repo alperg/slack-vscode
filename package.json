@@ -1,7 +1,7 @@
 {
   "name": "slack-vscode",
   "displayName": "Slack-VSCode",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Slack extension for VS Code: Send your messages and files to Slack without leaving the editor.",
   "icon": "assets/icon.png",
   "main": "./out/extension.js",
@@ -31,7 +31,7 @@
   },
   "license": "MIT",
   "activationEvents": [
-    "onCommand:slackVSCode.sendMsg",
+    "onCommand:slackVSCode.sendMessage",
     "onCommand:slackVSCode.sendSelection",
     "onCommand:slackVSCode.uploadFilePath",
     "onCommand:slackVSCode.uploadCurrentFile",
@@ -53,7 +53,7 @@
     },
     "commands": [
       {
-        "command": "slackVSCode.sendMsg",
+        "command": "slackVSCode.sendMessage",
         "title": "Slack-VSCode: Send Message"
       },
       {
@@ -79,7 +79,7 @@
         "key": "ctrl+shift+alt+s"
       },
       {
-        "command": "slackVSCode.sendMsg",
+        "command": "slackVSCode.sendMessage",
         "key": "ctrl+shift+alt+m"
       },
       {
