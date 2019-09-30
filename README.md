@@ -19,12 +19,12 @@ Go to User Settings (File > Preferences > User Settings) and add the following
   "slackVSCode.token": "<your team token>",
   "slackVSCode.user": "<your username>",
   "slackVSCode.iconUrl": "<your avatar url>",
-  "slackVSCode.listChannels": "<`true` for listing the slack channels>",
-  "slackVSCode.listGroups": "<`true` for listing the slack groups>",
-  "slackVSCode.listMembers": "<`true` for listing the slack members>",
-  "slackVSCode.fileWithFullPath": "<`true` if you want to send file with the full path>",
-  "slackVSCode.excludeFromFullPath": "<string to exclude from the file full path i.e. `/Users/alper/dev`",
-  "slackVSCode.defaultRecipient": "<the default recipient. This will send the message directly. i.e. #general, @user"
+  "slackVSCode.listChannels": true,
+  "slackVSCode.listGroups": false,
+  "slackVSCode.listMembers": false,
+  "slackVSCode.fileWithFullPath": true,
+  "slackVSCode.excludeFromFullPath": "/Users/alper/dev",
+  "slackVSCode.defaultRecipient": "#general"
 ```
 
 * ##### `"token"` (required)
@@ -35,7 +35,7 @@ Go to User Settings (File > Preferences > User Settings) and add the following
     * Specified username will be attributed to each message
 
 * ##### `"iconUrl"` (optional)
-    * Image for the avatar, defult 'https://im.ezgif.com/tmp/ezgif-1-0f817186d321.png'
+    * Image for the avatar, defult 'http://alperg.com/vscode-128x128.png'
 
 * ##### `"listChannels"` (optional)
     * <`true` for listing the slack channels>
