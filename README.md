@@ -1,15 +1,14 @@
 # VS Code Slack extension
 Send your messages and files to Slack without leaving VS Code.
-https://marketplace.visualstudio.com/items/alperg
 
 #### How it works?
 * Upload file to Slack
 
-![Send message](upload.gif)
+![Send message](assets/upload.gif)
 
 * Send message to Slack
 
-![Upload file](message.gif)
+![Upload file](assets/message.gif)
 
 ### Installation
 You can install this extension by pressing F1 in Visual Studio Code, then typing "ex install" and selecting it from the list.
