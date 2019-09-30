@@ -2,8 +2,6 @@ import * as vscode from 'vscode';
 import * as request from 'request';
 const fs = require('fs');
 
-let configuration: vscode.WorkspaceConfiguration;
-let extension: vscode.ExtensionContext;
 let disposables: vscode.Disposable[] = [];
 const channelList = [];
 let token: string;
@@ -310,8 +308,8 @@ function cleanupDisposables() {
 function reloadConfiguration() {
   cleanupDisposables();
   slack = null;
-
-  const CONFIG = configuration = vscode.workspace.getConfiguration('slackVSCode');
+    
+  const CONFIG:vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('slackVSCode');
   const TOKEN = token = CONFIG.get('token');
 
   user = CONFIG.get('user');
