@@ -35,16 +35,16 @@ Go to User Settings (File > Preferences > User Settings) and add the following
     * Specified username will be attributed to each message
 
 * ##### `"iconUrl"` (optional)
-    * Image for the avatar, defult 'http://alperg.com/vscode-128x128.png'
+    * Image for the avatar, default 'http://alperg.com/vscode-128x128.png'
 
 * ##### `"listChannels"` (optional)
-    * <`true` for listing the slack channels>
+    * `true` for listing the slack channels
 
 * ##### `"listGroups"` (optional)
-    * <`true` for listing the slack groups>
+    * `true` for listing the slack groups
 
 * ##### `"listMembers"` (optional)
-    * <`true` for listing the slack members>
+    * `true` for listing the slack members
 
 * ##### `"fileWithFullPath"` (optional)
     * `true` if you want to send files with full path
