@@ -82,6 +82,7 @@ https://github.com/alperg/slack-vscode/issues
 
    
 #### Credits
-* Inspired by Sozercan's plugin: https://marketplace.visualstudio.com/items/sozercan.slack
+* Inspired by [Sozercan's plugin](https://marketplace.visualstudio.com/items/sozercan.slack)
+* Extension icon made by [Flat Icons](https://www.flaticon.com/authors/flat-icons/ "Flat Icons") from [flaticon.com](https://www.flaticon.com/ "Flaticon")
 
 This extension is not created by, affiliated with, or supported by Slack Technologies, Inc.
