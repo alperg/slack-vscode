@@ -22,7 +22,6 @@ const ENDPOINT_POST_MESSAGE = 'chat.postMessage';
 const ENDPOINT_FILES_UPLOAD = 'files.upload';
 
 class SlackVSCode {
-  private _statusBarItem: vscode.StatusBarItem;
   private savedChannel: string;
 
   private GetChannelList(callback, type, data) {
@@ -102,12 +101,6 @@ class SlackVSCode {
   }
 
   private ApiCall(apiType, data?) {
-    const that = this;
-
-    if (!this._statusBarItem) {
-      this._statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
-    }
-
     request.post({
       url: `${SLACK_BASE_API_URL}${apiType}`,
       formData: data
@@ -115,14 +108,12 @@ class SlackVSCode {
       if (!error && response.statusCode == 200) {
         switch (apiType) {
           case ENDPOINT_FILES_UPLOAD:
-            that._statusBarItem.text = '$(file-text) File sent successfully!';
+            vscode.window.showInformationMessage('File sent successfully!');
             break;
           default:
-            that._statusBarItem.text = '$(comment) Message sent successfully!';
+            vscode.window.showInformationMessage('Message sent successfully!');
             break;
         }
-        that._statusBarItem.show();
-        setTimeout(function () { that._statusBarItem.hide() }, 5000);
       }
     });
   }
@@ -308,8 +299,8 @@ function cleanupDisposables() {
 function reloadConfiguration() {
   cleanupDisposables();
   slack = null;
-    
-  const CONFIG:vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('slackVSCode');
+
+  const CONFIG: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('slackVSCode');
   const TOKEN = token = CONFIG.get('token');
 
   user = CONFIG.get('user');
