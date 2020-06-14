@@ -135,7 +135,12 @@
           "type": "string",
           "default": "",
           "description": "The default recipient, to send the message directly without choosing from the drop down. i.e. '#general', '@user'"
-        }
+        },
+        "slackVSCode.postAsUser": {
+            "type": "boolean",
+            "default": "false",
+            "description": "Post the message as the authorized user instead of as a bot"
+        }	                
       }
     }
   },

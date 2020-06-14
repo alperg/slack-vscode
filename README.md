@@ -24,7 +24,8 @@ Go to User Settings (File > Preferences > User Settings) and add the following
   "slackVSCode.listMembers": false,
   "slackVSCode.fileWithFullPath": true,
   "slackVSCode.excludeFromFullPath": "/Users/alper/dev",
-  "slackVSCode.defaultRecipient": "#general"
+  "slackVSCode.defaultRecipient": "#general",
+  "slackVSCode.postAsUser" : true|false
 ```
 
 * ##### `"token"` (required)
@@ -54,6 +55,10 @@ Go to User Settings (File > Preferences > User Settings) and add the following
 
 * ##### `"defaultRecipient"` (optional)
     * The default recipient, to send the message directly without choosing from the drop down. i.e. `#general`, `@user`
+
+* ##### `"postAsUser"` (optional)
+    * **defaults to `false`**
+    * Set to true to post messages as the authorized user instead of as a bot
 
 ### Features
 * Send messages to

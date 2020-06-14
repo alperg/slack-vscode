@@ -13,6 +13,7 @@ let listMembers: boolean;
 let fileWithFullPath: boolean;
 let excludeFromFullPath: string;
 let defaultRecipient: string;
+let postAsUser: string;
 
 const SLACK_BASE_API_URL = 'https://slack.com/api/';
 const ENDPOINT_CHANNELS_LIST = 'channels.list';
@@ -239,7 +240,7 @@ class SlackVSCode {
           username: user,
           icon_url: iconUrl,
           text: text,
-          as_user: 'true'
+          as_user: postAsUser
         };
 
         if (text.startsWith('@') || text.startsWith('#')) {
@@ -271,7 +272,7 @@ class SlackVSCode {
       username: user,
       icon_url: iconUrl,
       text: text,
-      as_user: 'true'
+      as_user: postAsUser
     };
 
     this.GetChannelList(this.Send, ENDPOINT_POST_MESSAGE, data);
@@ -311,6 +312,7 @@ function reloadConfiguration() {
   fileWithFullPath = CONFIG.get('fileWithFullPath');
   excludeFromFullPath = CONFIG.get('excludeFromFullPath');
   defaultRecipient = CONFIG.get('defaultRecipient');
+  postAsUser = String(CONFIG.get('postAsUser'));
 
   if (TOKEN) {
     disposables.push(slack = new SlackVSCode());
