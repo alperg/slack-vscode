@@ -16,7 +16,7 @@ let defaultRecipient: string;
 let postAsUser: string;
 
 const SLACK_BASE_API_URL = 'https://slack.com/api/';
-const ENDPOINT_CHANNELS_LIST = 'channels.list';
+const ENDPOINT_CHANNELS_LIST = 'conversations.list';
 const ENDPOINT_USERS_LIST = 'users.list';
 const ENDPOINT_GROUPS_LIST = 'groups.list';
 const ENDPOINT_POST_MESSAGE = 'chat.postMessage';
