@@ -1,5 +1,5 @@
 # VS Code Slack extension
-Send your messages and files to Slack without leaving VS Code.
+Send your messages and files to Slack without leaving VS Code. Works with the latest API. (Updated 6/15/2010)
 
 #### How it works?
 * Upload file to Slack
