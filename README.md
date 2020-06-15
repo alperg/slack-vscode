@@ -14,7 +14,11 @@ Send your messages and files to Slack without leaving VS Code. Works with the la
 You can install this extension by pressing F1 in Visual Studio Code, then typing "ex install" and selecting it from the list.
 
 ### Slack integration
-Based on the latest updates on Slack API, you can no longer create legacy token to connect this extension to you Slack workspace. You need to create a new Slack App from https://api.slack.com/apps/ and add the following OAuth Scopes to "Bot Token":
+Based on the latest updates on Slack API, you can no longer create legacy token to connect this extension to you Slack workspace. 
+
+You have 2 options, create a Slack app yourself (1), or use the one I created (2):
+
+1. Create a new Slack App from https://api.slack.com/apps/ and add the following OAuth Scopes to "Bot Token":
 
 * incoming-webhook
 * channels:read
@@ -26,6 +30,9 @@ Based on the latest updates on Slack API, you can no longer create legacy token 
 * mpim:read
 
 You can then copy and paste the token into your VS Code settings file. The token should start with **"xoxb-"**.
+
+2. Use the link to install the app:
+   https://slack.com/oauth/v2/authorize?client_id=1163928200117.1179480947506&scope=channels:read,chat:write,chat:write.customize,groups:read,im:read,incoming-webhook,mpim:read,files:write
 
 ### VS Code Configuration
 Go to User Settings (File > Preferences > User Settings) and add the following 
