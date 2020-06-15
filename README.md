@@ -31,7 +31,7 @@ You have 2 options, create a Slack app yourself (1), or use the one I created (2
 
 You can then copy and paste the token into your VS Code settings file. The token should start with **"xoxb-"**.
 
-1. <a href="https://slack.com/oauth/authorize?client_id=10638890021.1209235787632&scope=incoming-webhook,channels:read,chat:write,files:write,groups:read,im:read,mpim:read"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"></a>
+1. <a href="https://slack.com/v2/oauth/authorize?client_id=10638890021.1209235787632&scope=incoming-webhook,channels:read,chat:write,files:write,groups:read,im:read,mpim:read"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"></a>
 
 **Do not forget to add the app's bot user to channels you want to post to.**
 
