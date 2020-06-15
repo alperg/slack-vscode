@@ -1,7 +1,7 @@
 {
   "name": "slack-vscode",
   "displayName": "Slack-VSCode",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Slack extension for VS Code: Send your messages and files to Slack without leaving the editor.",
   "icon": "assets/icon.png",
   "main": "./out/extension.js",
@@ -96,16 +96,6 @@
           "default": "",
           "description": "Slack team token"
         },
-        "slackVSCode.user": {
-          "type": "string",
-          "default": "Code",
-          "description": "Slack username"
-        },
-        "slackVSCode.iconUrl": {
-          "type": "string",
-          "default": "http://alperg.com/vscode-128x128.png",
-          "description": "Slack icon url"
-        },
         "slackVSCode.listChannels": {
           "type": "boolean",
           "default": true,
@@ -135,12 +125,7 @@
           "type": "string",
           "default": "",
           "description": "The default recipient, to send the message directly without choosing from the drop down. i.e. '#general', '@user'"
-        },
-        "slackVSCode.postAsUser": {
-            "type": "boolean",
-            "default": "false",
-            "description": "Post the message as the authorized user instead of as a bot"
-        }	                
+        }             
       }
     }
   },

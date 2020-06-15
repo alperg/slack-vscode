@@ -5,15 +5,12 @@ const fs = require('fs');
 let disposables: vscode.Disposable[] = [];
 const channelList = [];
 let token: string;
-let user: string;
-let iconUrl: string;
 let listChannels: boolean;
 let listGroups: boolean;
 let listMembers: boolean;
 let fileWithFullPath: boolean;
 let excludeFromFullPath: string;
 let defaultRecipient: string;
-let postAsUser: string;
 
 const SLACK_BASE_API_URL = 'https://slack.com/api/';
 const ENDPOINT_CHANNELS_LIST = 'conversations.list';
@@ -237,10 +234,7 @@ class SlackVSCode {
         const data = {
           channel: '',
           token: token,
-          username: user,
-          icon_url: iconUrl,
-          text: text,
-          as_user: postAsUser
+          text: text
         };
 
         if (text.startsWith('@') || text.startsWith('#')) {
@@ -269,10 +263,7 @@ class SlackVSCode {
     const data = {
       channel: '',
       token: token,
-      username: user,
-      icon_url: iconUrl,
-      text: text,
-      as_user: postAsUser
+      text: text
     };
 
     this.GetChannelList(this.Send, ENDPOINT_POST_MESSAGE, data);
@@ -304,15 +295,12 @@ function reloadConfiguration() {
   const CONFIG: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('slackVSCode');
   const TOKEN = token = CONFIG.get('token');
 
-  user = CONFIG.get('user');
-  iconUrl = CONFIG.get('iconUrl');
   listChannels = CONFIG.get('listChannels');
   listGroups = CONFIG.get('listGroups');
   listMembers = CONFIG.get('listMembers');
   fileWithFullPath = CONFIG.get('fileWithFullPath');
   excludeFromFullPath = CONFIG.get('excludeFromFullPath');
   defaultRecipient = CONFIG.get('defaultRecipient');
-  postAsUser = String(CONFIG.get('postAsUser'));
 
   if (TOKEN) {
     disposables.push(slack = new SlackVSCode());
