@@ -16,9 +16,7 @@ You can install this extension by pressing F1 in Visual Studio Code, then typing
 ### Slack integration
 Based on the latest updates on Slack API, you can no longer create legacy token to connect this extension to you Slack workspace. 
 
-You have 2 options, create a Slack app yourself (1), or use the one I created (2):
-
-1. Create a new Slack App from https://api.slack.com/apps/ and add the following OAuth Scopes to "Bot Token":
+Create a new Slack App from https://api.slack.com/apps/ and add the following OAuth Scopes to "Bot Token":
 
 * incoming-webhook
 * channels:read
@@ -30,8 +28,6 @@ You have 2 options, create a Slack app yourself (1), or use the one I created (2
 * mpim:read
 
 You can then copy and paste the token into your VS Code settings file. The token should start with **"xoxb-"**.
-
-1. <a href="https://slack.com/oauth/v2/authorize?client_id=10638890021.1209235787632&scope=channels:read,chat:write,files:write,groups:read,im:read,incoming-webhook,mpim:read"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"></a>
 
 **Do not forget to add the app's bot user to channels you want to post to.**
 
