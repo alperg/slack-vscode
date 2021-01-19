@@ -273,11 +273,9 @@ class SlackVSCode {
 };
 
 let slack: SlackVSCode;
-let holder = {slack};
 
 function reloadConfiguration() {
   slack = null;
-  holder.slack = slack;
   const CONFIG: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('slackVSCode');
   const TOKEN = token = CONFIG.get('token');
 
@@ -287,10 +285,8 @@ function reloadConfiguration() {
   fileWithFullPath = CONFIG.get('fileWithFullPath');
   excludeFromFullPath = vscodeVariables(CONFIG.get('excludeFromFullPath'));
   defaultRecipient = CONFIG.get('defaultRecipient');
-  console.log('TOKEN', TOKEN);
   if (TOKEN) {
     slack = new SlackVSCode()
-    holder.slack = slack;
   }
   else {
     vscode.window.showErrorMessage('Please setup a new Slack token to use this extension.');
@@ -303,23 +299,23 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     // Send typed message
     vscode.commands.registerCommand('slackVSCode.sendMessage', () => {
-        holder.slack.SendMessage()
+        slack.SendMessage()
     }),
     // Send selected text as a message
     vscode.commands.registerCommand('slackVSCode.sendSelection', () => {
-        holder.slack.SendSelection()
+        slack.SendSelection()
     }),
     // Upload current file
     vscode.commands.registerCommand('slackVSCode.uploadCurrentFile', () => {
-        holder.slack.UploadCurrentFile()
+        slack.UploadCurrentFile()
     }),
     // Upload selection
     vscode.commands.registerCommand('slackVSCode.uploadFileSelection', () => {
-        holder.slack.UploadFileSelection()
+        slack.UploadFileSelection()
     }),
     // Upload file path
     vscode.commands.registerCommand('slackVSCode.uploadFilePath', () => {
-        holder.slack.UploadFilePath()
+        slack.UploadFilePath()
     })
   );
 
