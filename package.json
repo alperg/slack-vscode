@@ -125,7 +125,7 @@
           "type": "string",
           "default": "",
           "description": "The default recipient, to send the message directly without choosing from the drop down. i.e. '#general', '@user'"
-        }             
+        }
       }
     }
   },
@@ -152,6 +152,7 @@
     "vscode": "^1.1.36"
   },
   "dependencies": {
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "vscode-variables": "^0.1.2"
   }
 }
