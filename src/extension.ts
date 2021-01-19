@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
 import * as request from 'request';
+import * as vscodeVariables from 'vscode-variables';
 const fs = require('fs');
 
-let disposables: vscode.Disposable[] = [];
 const channelList = [];
 let token: string;
 let listChannels: boolean;
@@ -11,7 +11,6 @@ let listMembers: boolean;
 let fileWithFullPath: boolean;
 let excludeFromFullPath: string;
 let defaultRecipient: string;
-
 const SLACK_BASE_API_URL = 'https://slack.com/api/';
 const ENDPOINT_CHANNELS_LIST = 'conversations.list';
 const ENDPOINT_USERS_LIST = 'users.list';
@@ -275,23 +274,8 @@ class SlackVSCode {
 
 let slack: SlackVSCode;
 
-function cleanupDisposables() {
-  while (disposables.length > 0) {
-    const DISP = disposables.shift();
-
-    try {
-      DISP.dispose();
-    }
-    catch (e) {
-      vscode.window.showErrorMessage('Unknown error.');
-    }
-  }
-}
-
 function reloadConfiguration() {
-  cleanupDisposables();
   slack = null;
-
   const CONFIG: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('slackVSCode');
   const TOKEN = token = CONFIG.get('token');
 
@@ -299,11 +283,10 @@ function reloadConfiguration() {
   listGroups = CONFIG.get('listGroups');
   listMembers = CONFIG.get('listMembers');
   fileWithFullPath = CONFIG.get('fileWithFullPath');
-  excludeFromFullPath = CONFIG.get('excludeFromFullPath');
+  excludeFromFullPath = vscodeVariables(CONFIG.get('excludeFromFullPath'));
   defaultRecipient = CONFIG.get('defaultRecipient');
-
   if (TOKEN) {
-    disposables.push(slack = new SlackVSCode());
+    slack = new SlackVSCode()
   }
   else {
     vscode.window.showErrorMessage('Please setup a new Slack token to use this extension.');
@@ -315,15 +298,25 @@ export function activate(context: vscode.ExtensionContext) {
   // Commands
   context.subscriptions.push(
     // Send typed message
-    vscode.commands.registerCommand('slackVSCode.sendMessage', () => slack.SendMessage()),
+    vscode.commands.registerCommand('slackVSCode.sendMessage', () => {
+        slack.SendMessage()
+    }),
     // Send selected text as a message
-    vscode.commands.registerCommand('slackVSCode.sendSelection', () => slack.SendSelection()),
+    vscode.commands.registerCommand('slackVSCode.sendSelection', () => {
+        slack.SendSelection()
+    }),
     // Upload current file
-    vscode.commands.registerCommand('slackVSCode.uploadCurrentFile', () => slack.UploadCurrentFile()),
+    vscode.commands.registerCommand('slackVSCode.uploadCurrentFile', () => {
+        slack.UploadCurrentFile()
+    }),
     // Upload selection
-    vscode.commands.registerCommand('slackVSCode.uploadFileSelection', () => slack.UploadFileSelection()),
+    vscode.commands.registerCommand('slackVSCode.uploadFileSelection', () => {
+        slack.UploadFileSelection()
+    }),
     // Upload file path
-    vscode.commands.registerCommand('slackVSCode.uploadFilePath', () => slack.UploadFilePath())
+    vscode.commands.registerCommand('slackVSCode.uploadFilePath', () => {
+        slack.UploadFilePath()
+    })
   );
 
   // Reload configuration when updated
@@ -336,5 +329,5 @@ export function activate(context: vscode.ExtensionContext) {
 
 // This function is called when the extension is deactivated
 export function deactivate() {
-  cleanupDisposables();
+ 
 }
