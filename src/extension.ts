@@ -22,7 +22,7 @@ class SlackVSCode {
   private savedChannel: string;
 
   private GetChannelList(callback, type, data) {
-    const params = `?token=${token}&exclude_archived=1`;
+    const params = `?exclude_archived=1`;
     channelList.length = 0;
 
     const wrapRequest = function (urls, callback) {
@@ -41,7 +41,12 @@ class SlackVSCode {
       };
 
       while (t--) {
-        request(urls[t], handler);
+        request.get({
+          url: urls[t],
+          headers: {
+            'Authorization': `Bearer ${token}`
+          },
+        }, handler);
       }
     };
 
@@ -100,6 +105,9 @@ class SlackVSCode {
   private ApiCall(apiType, data?) {
     request.post({
       url: `${SLACK_BASE_API_URL}${apiType}`,
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
       formData: data
     }, function (error, response, body) {
       if (!error && response.statusCode == 200) {
@@ -329,5 +337,5 @@ export function activate(context: vscode.ExtensionContext) {
 
 // This function is called when the extension is deactivated
 export function deactivate() {
- 
+
 }
